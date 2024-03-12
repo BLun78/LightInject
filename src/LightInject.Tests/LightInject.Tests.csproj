@@ -1,10 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net8.0;</TargetFrameworks>
     <NoWarn>$(NoWarn);CS0579</NoWarn>
-    <TestTargetFrameworks>net6.0;netstandard2.0</TestTargetFrameworks>
-    <TestTargetFramework>net6.0</TestTargetFramework>
+    <TestTargetFrameworks>net8.0;net7.0;netstandard2.0;net48;</TestTargetFrameworks>
   </PropertyGroup>
   <Choose>
     <When Condition=" '$(TestTargetFramework)'=='netstandard2.0' ">
@@ -13,26 +12,26 @@
       </PropertyGroup>
     </When>
   </Choose>
-  <PropertyGroup Condition=" '$(TestTargetFramework)'=='net6.0' ">
+  <PropertyGroup Condition=" '$(TestTargetFramework)'=='net7.0' ">
     <DefineConstants>USE_ASSEMBLY_VERIFICATION;USE_ASYNCDISPOSABLE</DefineConstants>
   </PropertyGroup>
-  <ItemGroup Condition=" '$(TestTargetFramework)' == 'net46' OR '$(TestTargetFramework)' == 'netstandard2.0'">
+  <ItemGroup Condition=" '$(TestTargetFramework)' == 'net48' OR '$(TestTargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="3.2.0">
+    <PackageReference Include="coverlet.collector" Version="6.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="LightMock" Version="2.0.1" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.5.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.9.2" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
     <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.7.0" />
-    <PackageReference Include="xunit" Version="2.4.2" />
-    <PackageReference Include="xUnit.Analyzers" Version="1.1.0" />
+    <PackageReference Include="xunit" Version="2.7.0" />
+    <PackageReference Include="xUnit.Analyzers" Version="1.11.0" />
     <PackageReference Include="ILVerifier" Version="0.0.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.5">
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
@@ -46,10 +45,7 @@
     <PackageReference Include="System.Threading.Tasks.Parallel" Version="4.3.0" />
     <PackageReference Include="System.Threading.Thread" Version="4.3.0" />
   </ItemGroup> -->
-  <ItemGroup>
-    <ProjectReference Include="..\LightInject\LightInject.csproj" AdditionalProperties="TargetFramework=$(TestTargetFramework)" />
-  </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net46' OR '$(TargetFramework)' == 'net452'">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' OR '$(TargetFramework)' == 'net452'">
     <Reference Include="System" />
     <Reference Include="System.IO" />
     <!-- <Reference Include="System.Runtime" /> -->
@@ -60,5 +56,8 @@
     <Content Include="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LightInject\LightInject.csproj" />
   </ItemGroup>
 </Project>

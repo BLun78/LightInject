@@ -1,9 +1,9 @@
 ﻿#nullable disable
-#if NETSTANDARD2_0
+#if NETSTANDARD2_0 || NETSTANDARD2_1
 #define USE_EXPRESSIONS
 #endif
 
-#if NETCOREAPP3_1_OR_GREATER || NET5_0_OR_GREATER
+#if NET6_0_OR_GREATER
 #define USE_ASYNCDISPOSABLE    
 #endif
 
